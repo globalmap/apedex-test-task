@@ -1,0 +1,42 @@
+.message {
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 12px;
+  animation: slideIn 0.3s ease;
+
+  &.success {
+    background: #d4edda;
+    border: 2px solid #28a745;
+
+    .message-text {
+      color: #155724;
+    }
+  }
+
+  &.error {
+    background: #f8d7da;
+    border: 2px solid #dc3545;
+
+    .message-text {
+      color: #721c24;
+    }
+  }
+}
+
+.message-text {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.explorer-link {
+  color: #155724;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
