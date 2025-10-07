@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+# Phantom Wallet - Solana Transfer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-додаток для підключення Phantom гаманця та відправки SOL в мережі Solana.
 
-Currently, two official plugins are available:
+**Тестове завдання виконано на: React + TypeScript + SCSS + @solana/web3.js**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Швидкий старт
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Встановлення залежностей
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Запуск проекту
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm start
 ```
+
+Додаток буде доступний за адресою: `http://localhost:5173`
+
+---
+
+## 📁 Структура проекту
+
+```
+phantom-wallet-app/
+├── src/
+│   ├── components/              # React компоненти
+│   │   ├── WalletInfo.tsx       # Відображення адреси та балансу
+│   │   ├── SendForm.tsx         # Форма відправки SOL
+│   │   └── Message.tsx          # Повідомлення про статус операції
+│   ├── hooks/
+│   │   └── useWallet.ts         # Хук з логікою роботи з гаманцем
+│   ├── utils/
+│   │   ├── solana.ts            # Функції для роботи з Solana
+│   │   └── phantom.ts           # Функції для роботи з Phantom
+│   ├── types/
+│   │   └── index.ts             # TypeScript типи та інтерфейси
+│   ├── styles/                  # SCSS стилі
+│   │   ├── App.scss
+│   │   ├── WalletInfo.scss
+│   │   ├── SendForm.scss
+│   │   └── Message.scss
+│   ├── config/
+│   │   └── constants.ts         # Конфігурація (мережа, RPC endpoints)
+│   ├── App.tsx                  # Головний компонент
+│   └── index.tsx                # Точка входу
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+### Архітектурні рішення
+
+- **Модульність:** Кожен компонент у своєму файлі з окремими стилями
+- **Хуки:** Вся бізнес-логіка винесена в `useWallet` хук
+- **Утиліти:** Функції для Solana та Phantom ізольовані
+- **Типізація:** Строгі TypeScript типи для всіх даних
+- **Конфігурація:** Єдина точка налаштування мережі
+
+---
+
+## 🛠️ Технології
+
+- **React** - UI
+- **TypeScript** - типізація та безпека коду
+- **SCSS** - стилізація
+- **@solana/web3.js** - взаємодія з блокчейном Solana
+- **Phantom Wallet API** - підключення та підпис транзакцій
+
+---
+
+## 🔧 Конфігурація
+
+### Зміна мережі
+
+Файл: `src/config/constants.ts`
+
+```typescript
+// Для тестування (безкоштовні SOL)
+export const NETWORK = 'devnet';
+
+// Для реальних транзакцій
+export const NETWORK = 'mainnet-beta';
+```
+
+### RPC Endpoints
+
+- **Mainnet:** `https://api.mainnet-beta.solana.com`
+- **Devnet:** `https://api.devnet.solana.com`
+
+---
+
+## 📊 Функціонал
+
+### Основний функціонал
+- [x] Підключення Phantom Wallet
+- [x] Відображення адреси користувача (скорочено)
+- [x] Відображення балансу SOL
+- [x] Форма для введення адреси отримувача
+- [x] Форма для введення суми SOL
+- [x] Створення транзакції
+- [x] Підпис через Phantom
+- [x] Відправка в мережу Solana
+- [x] Підтвердження транзакції
+- [x] Повідомлення про успіх/помилку
+- [x] Посилання на Solana Explorer
+
+### Додатковий функціонал
+- [x] Кнопка оновлення балансу
+- [x] Тест з'єднання з мережею
+- [x] Валідація балансу перед відправкою
+- [x] Обробка помилок
+- [x] Loading states
+- [x] Адаптивний дизайн
