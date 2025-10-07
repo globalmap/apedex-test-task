@@ -6,7 +6,7 @@ import type { MessageType } from '../types';
 
 export const useWallet = () => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
-  const [balance, setBalance] = useState<number>(1111);
+  const [balance, setBalance] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<MessageType | null>(null);
 
@@ -36,7 +36,7 @@ export const useWallet = () => {
 
     try {
       const bal = await fetchBalance(addr);
-    //   setBalance(bal);
+      setBalance(bal);
     } catch (err: any) {
       console.error('Balance fetch error:', err);
     }
