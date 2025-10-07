@@ -12,7 +12,6 @@ const App: React.FC = () => {
     message,
     connectWallet,
     refreshBalance,
-    testConnectionStatus,
     sendSol,
   } = useWallet();
 
